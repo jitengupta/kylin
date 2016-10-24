@@ -45,7 +45,7 @@ import org.junit.rules.ExpectedException;
 
 import com.google.common.collect.Maps;
 
-@Ignore("KylinQueryTest is contained by ITCombinationTest")
+//@Ignore("KylinQueryTest is contained by ITCombinationTest")
 public class ITKylinQueryTest extends KylinTestBase {
 
     @Rule
@@ -150,7 +150,7 @@ public class ITKylinQueryTest extends KylinTestBase {
 
     }
 
-    @Ignore
+    //@Ignore
     @Test
     public void testSingleRunQuery() throws Exception {
 
