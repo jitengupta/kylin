@@ -18,11 +18,21 @@
 
 package org.apache.kylin.query.routing;
 
+import org.apache.kylin.metadata.model.DataModelDesc;
 import org.apache.kylin.query.relnode.OLAPContext;
+import org.apache.kylin.query.relnode.OLAPTableScan;
 
 public class ModelChooser {
 
     public static void chooseModel(OLAPContext context) {
+        DataModelDesc model = null;
         
+        fixModel(context, model);
+    }
+    
+    private static void fixModel(OLAPContext context, DataModelDesc model) {
+        for (OLAPTableScan tableScan : context.allTableScans) {
+            tableScan.fixColumnRowTypeWithModel(model);
+        }
     }
 }
