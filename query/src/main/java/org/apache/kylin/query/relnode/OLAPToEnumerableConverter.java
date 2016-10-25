@@ -45,7 +45,6 @@ import org.apache.kylin.metadata.filter.ColumnTupleFilter;
 import org.apache.kylin.metadata.filter.LogicalTupleFilter;
 import org.apache.kylin.metadata.filter.TupleFilter;
 import org.apache.kylin.metadata.filter.TupleFilter.FilterOperatorEnum;
-import org.apache.kylin.metadata.model.DataModelDesc;
 import org.apache.kylin.metadata.model.TblColRef;
 import org.apache.kylin.metadata.realization.IRealization;
 import org.apache.kylin.query.routing.ModelChooser;
@@ -90,8 +89,8 @@ public class OLAPToEnumerableConverter extends ConverterImpl implements Enumerab
                     continue;
                 }
 
-                ModelChooser.chooseModel(context);
-                IRealization realization = QueryRouter.selectRealization(context);
+                Set<IRealization> candidates = ModelChooser.selectModel(context);
+                IRealization realization = QueryRouter.selectRealization(context, candidates);
                 context.realization = realization;
 
                 doAccessControl(context);
